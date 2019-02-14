@@ -1,29 +1,57 @@
 <template>
     <div id="app">
-        <div>
-            <el-button @click="startHacking">Start</el-button>
-            <el-input placeholder="Please input" v-model="input1"></el-input>
-            <el-time-select
-                    v-model="input2"
-                    :picker-options="{
-    start: '08:30',
-    step: '00:15',
-    end: '18:30'
-  }"
-                    placeholder="Select time">
-            </el-time-select>
-            <el-switch v-model="value1">
-            </el-switch>
-        </div>
+        <el-container>
+            <el-header height="100px">
+            </el-header>
+            <el-container>
+                <el-aside width="200px">
+                    <el-col :span="24">
+                        <el-menu default-active="1" class="el-menu-vertical-demo">
+                            <el-menu-item index="1">
+                                <i class="el-icon-location"></i>
+                                <router-link to="/location"><span>Location</span></router-link>
+                            </el-menu-item>
+                            <el-menu-item index="2" disabled>
+                                <i class="el-icon-document"></i>
+                                <!-- 6. When clicking, it loads the contents defined in 2 and 1 -->
+                                <router-link to="/foo"><span>foo</span></router-link>
+                            </el-menu-item>
+                            <el-menu-item index="3">
+                                <i class="el-icon-setting"></i>
+                                <span>Navigator Four</span>
+                                <router-link to="/bar"><span>bar</span></router-link>
+                            </el-menu-item>
+                        </el-menu>
+                    </el-col>
+                </el-aside>
+                <el-main>
+                    <el-table :data="location" style="width: 100%">
+                        <el-table-column prop="id" label="id" width="100"></el-table-column>
+                        <el-table-column prop="name" label="name"></el-table-column>
+                        <el-table-column prop="country" label="country" width="180"></el-table-column>
+                        <el-table-column prop="metro" label="metro" width="180"></el-table-column>
+                        <el-table-column prop="market" label="market" width="180"></el-table-column>
+                        <el-table-column prop="status" label="status" width="180"></el-table-column>
+                    </el-table>
+                </el-main>
+            </el-container>
+        </el-container>
+
+
     </div>
 </template>
 
 <script>
   export default {
-    data:function(){
-      return{
-        value1:""
-      }
+    data: function() {
+      return {
+        value1: '',
+        location: [
+          {id: 1, name: 'Site1', country: 'USA', metro: 'San Jose', market: 'US', status: 'Active'},
+          {id: 2, name: 'Site2', country: 'USA', metro: 'San Mateo', market: 'US', status: 'Active'},
+          {id: 3, name: 'Site3', country: 'USA', metro: 'San Rafael', market: 'US', status: 'Active'}],
+
+      };
     },
     methods: {
       startHacking() {
